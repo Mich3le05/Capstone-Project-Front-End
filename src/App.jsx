@@ -7,6 +7,7 @@ import { Col, Container, Row } from 'react-bootstrap'
 import Home from './pages/Home'
 import NotFound from './components/NotFound'
 import MyNav from './components/MyNav'
+import MyFooter from './components/MyFooter'
 
 function App() {
   return (
@@ -40,6 +41,9 @@ function App() {
           </Routes>
         </Container>
       </main>
+      <footer>
+        <MyFooter />
+      </footer>
     </BrowserRouter>
   )
 }
