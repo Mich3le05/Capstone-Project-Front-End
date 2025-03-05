@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 const MyFooter = () => {
   return (
-    <Container fluid className="fixed-bottom bg-light py-3">
+    <Container fluid className=" bg-light py-3">
       <Container>
         <Row className="justify-content-between">
           <Col md={4} className="d-flex flex-column">
@@ -34,7 +34,12 @@ const MyFooter = () => {
             className="text-center d-flex flex-column align-items-center"
           >
             <hr className="w-100 my-2 mt-3 text-black" />
-            <p className="fixed-bottom">P.IVA 123456789101112</p>
+            <div className="mt-auto">
+              <p className="mb-1">
+                Copyright &copy; {new Date().getFullYear()}{' '}
+              </p>
+              <p>P.IVA 123456789101112</p>
+            </div>
           </Col>
 
           <Col md={4} className="d-flex flex-column align-items-end">
@@ -51,7 +56,7 @@ const MyFooter = () => {
               <Link className="nav-link small" to="/">
                 Informazioni Generali di Vendita
               </Link>
-              <h5 className="fw-bold text-center mt-3">Social</h5>
+              <h5 className="fw-bold text-center mt-auto">Social</h5>
               <div className="d-flex justify-content-center gap-4">
                 <Link to="/" className="text-dark">
                   <FaFacebook size={25} />
