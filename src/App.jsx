@@ -16,30 +16,19 @@ function App() {
         <MyNav />
       </header>
       <main>
-        <Container>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Row className="justify-content-center mt-3">
-                  <Col xs={12} md={8} lg={6}>
-                    <Home />
-                  </Col>
-                </Row>
-              }
-            />
-            <Route
-              path="*"
-              element={
-                <Row className="justify-content-center mt-3">
-                  <Col xs={12} md={8} lg={6}>
-                    <NotFound />
-                  </Col>
-                </Row>
-              }
-            />
-          </Routes>
-        </Container>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="*"
+            element={
+              <Row className="justify-content-center mt-3">
+                <Col xs={12} md={8} lg={6}>
+                  <NotFound />
+                </Col>
+              </Row>
+            }
+          />
+        </Routes>
       </main>
       <footer>
         <MyFooter />
