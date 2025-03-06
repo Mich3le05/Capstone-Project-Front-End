@@ -1,6 +1,7 @@
 import { Col, Container, Image, Row } from 'react-bootstrap'
 import '../assets/css/Home.css'
 import StartImg from '../assets/images/3.webp'
+import CardProduct from '../components/CardProduct'
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
         <Row className="justify-content-center mt-3">
           <Col xs={12} md={8} lg={6}>
             <h1>Benvenuto nel nostro sito</h1>
+            <CardProduct />
             <p>
               Questo è un esempio di testo che appare sotto l'immagine. Quando
               scrolli, il contenuto si sovrappone all'immagine.

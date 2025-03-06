@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import '../src/assets/css/App.css'
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
 
 import Home from './pages/Home'
 import Products from './pages/Products'
