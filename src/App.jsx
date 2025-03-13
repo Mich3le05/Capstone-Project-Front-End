@@ -8,10 +8,10 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Account from './pages/Account'
 import Shopping from './pages/Shopping'
+import Products from './pages/Products'
 import NotFound from './components/NotFound'
 import MyNav from './components/MyNav'
 import MyFooter from './components/MyFooter'
-import CardProduct from './components/CardProduct'
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/products/:productId" element={<CardProduct />} />
+          <Route path="/products/:productId" element={<Products />} />
           <Route path="/about" element={<About />} />
           <Route path="/account" element={<Account />} />
           <Route path="/shopping" element={<Shopping />} />
