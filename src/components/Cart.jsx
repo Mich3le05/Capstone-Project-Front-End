@@ -7,69 +7,53 @@ import { useEffect } from 'react'
 
 const Cart = () => {
   const navigate = useNavigate()
-
-  // hooks di react-redux
-
-  // cardArray sarà l'array di libri nel carrello in Redux
-  const cartArray = useSelector((reduxState) => {
-    return reduxState.cart.content
-  })
-
-  const username = useSelector((reduxState) => {
-    return reduxState.user.name
-  })
-
-  const booksInStock = useSelector((reduxState) => {
-    return reduxState.book.inStock
-  })
-
-  // otteniamo la funzione di dispatch
   const dispatch = useDispatch()
 
-  // rimandiamo l'utente in homepage se non ha uno username
+  const cartArray = useSelector((reduxState) => reduxState.cart.content)
+  const username = useSelector((reduxState) => reduxState.user.name)
+  const productsInStock = useSelector((reduxState) => reduxState.store.products)
+
   useEffect(() => {
     if (username === '') {
       navigate('/')
     }
-  })
+  }, [username, navigate])
 
   return (
     <Row>
       <Col sm={12}>
         <ul style={{ listStyle: 'none' }}>
-          {cartArray.map((book, i) => (
+          {cartArray.map((product, i) => (
             <li key={i} className="my-4">
               <Button
                 variant="danger"
-                onClick={() => {
-                  dispatch(removeFromCartAction(i))
-                }}
+                onClick={() => dispatch(removeFromCartAction(i))}
               >
                 <FaTrash />
               </Button>
               <img
-                className="book-cover-small"
-                src={book.imageUrl}
-                alt="book selected"
+                className="product-image-small"
+                src={product.imageUrl}
+                alt={product.name}
               />
-              {book.title}
+              {product.name} - {product.price}€
             </li>
           ))}
         </ul>
       </Col>
       <Row>
         <Col sm={12} className="fw-bold mb-3 ms-4">
-          TOTALE:{' '}
+          Totale:{' '}
           {cartArray.reduce(
-            (acc, currentValue) => acc + parseFloat(currentValue.price),
+            (acc, product) => acc + parseFloat(product.price),
             0
           )}
-          $
+          €
         </Col>
       </Row>
       <Row>
         <Col sm={12} className="fw-bold mb-3 ms-4">
-          Nel negozio sono disponibili {booksInStock.length} libri!
+          Nel negozio sono disponibili {productsInStock.length} prodotti!
         </Col>
       </Row>
     </Row>
