@@ -2,9 +2,13 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import '../src/assets/css/App.css'
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
 
 import Home from './pages/Home'
+import About from './pages/About'
+import Account from './pages/Account'
+import Shopping from './pages/Shopping'
+import Products from './pages/Products'
 import NotFound from './components/NotFound'
 import MyNav from './components/MyNav'
 import MyFooter from './components/MyFooter'
@@ -15,9 +19,13 @@ function App() {
       <header>
         <MyNav />
       </header>
-      <main>
+      <main className="bg-color">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/products/:productId" element={<Products />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/account" element={<Account />} />
+          <Route path="/shopping" element={<Shopping />} />
           <Route
             path="*"
             element={

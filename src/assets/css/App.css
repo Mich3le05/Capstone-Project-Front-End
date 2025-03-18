@@ -1,0 +1,31 @@
+.bg-color {
+  background-color: #f8f1ea;
+}
+
+.nav-color {
+  background-color: #ebb44f;
+}
+
+.footer-color {
+  background-color: #ffffff;
+}
+
+.text-color {
+  color: #452518;
+}
+
+.titoli-font {
+  font-family: 'Lora', serif;
+}
+
+.font {
+  font-family: 'Roboto', sans-serif;
+}
+
+.shadow-footer {
+  box-shadow: 0px -15px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-nav {
+  box-shadow: 0px 15px 15px -3px rgba(0, 0, 0, 0.1);
+}

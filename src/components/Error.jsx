@@ -1,7 +1,5 @@
 import { Alert } from 'react-bootstrap'
 
-const Error1 = () => (
-  <Alert variant="danger">Errore nel caricamento del profilo</Alert>
-)
+const Error = ({ message }) => <Alert variant="danger">{message}</Alert>
 
-export default Error1
+export default Error
