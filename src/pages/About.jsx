@@ -14,29 +14,29 @@ const About = () => {
               <hr className="border-2 border-black" />
             </div>
             <div>
-              <h4 className="mb-1 text-color">Sede</h4>
+              <h4 className="mb-1 mt-4 text-color">Sede</h4>
               <p className="pb-0">
                 Via Castroreale, 0 98053 Castroreale - Messina - Italia
               </p>
               <hr className="border-2 border-black" />
             </div>
             <div>
-              <h4 className="mb-1 text-color">Telefono</h4>
+              <h4 className="mb-1 mt-4 text-color">Telefono</h4>
               <p className="pb-0">+39 333 000 1212</p>
               <hr className="border-2 border-black" />
             </div>
             <div>
-              <h4 className="mb-1 text-color">Email</h4>
+              <h4 className="mb-1 mt-4 text-color">Email</h4>
               <p className="pb-0">info@biscottificio.com</p>
               <hr className="border-2 border-black" />
             </div>
             <div>
-              <h4 className="mb-1 text-color">P.IVA</h4>
+              <h4 className="mb-1 mt-4 text-color">P.IVA</h4>
               <p className="pb-0">123456789</p>
               <hr className="border-2 border-black" />
             </div>
             <div>
-              <h4 className="mb-1 text-color">
+              <h4 className="mb-1 mt-4 text-color">
                 Hai bisogno di ulteriori informazioni?
               </h4>
               <p className="pb-0">
