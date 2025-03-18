@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 const MyFooter = () => {
   return (
-    <Container fluid className=" bg-light py-3">
+    <Container fluid className="footer-color py-3">
       <Container>
         <Row className="justify-content-between">
           <Col md={4} className="d-flex flex-column">
@@ -28,7 +28,6 @@ const MyFooter = () => {
               +39 333 000 1212
             </Link>
           </Col>
-
           <Col
             md={4}
             className="text-center d-flex flex-column align-items-center"

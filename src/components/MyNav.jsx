@@ -6,7 +6,7 @@ import logo from '../assets/images/logo-bg.png'
 
 const MyNav = () => {
   return (
-    <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary py-0">
+    <Navbar collapseOnSelect expand="lg" className="nav-color py-0">
       <Container className="d-flex justify-content-between align-items-center">
         <Navbar.Brand
           as={Link}
@@ -23,22 +23,25 @@ const MyNav = () => {
           className="justify-content-center"
         >
           <Nav className="mx-auto">
-            <Link className="nav-link" to="/">
+            <Link className="nav-link text-color fw-semibold fs-5" to="/">
               Home
             </Link>
-            <Link className="nav-link" to="/products">
+            <Link
+              className="nav-link text-color fw-semibold fs-5"
+              to="/products"
+            >
               Prodotti
             </Link>
-            <Link className="nav-link" to="/about">
+            <Link className="nav-link text-color fw-semibold fs-5" to="/about">
               Contatti
             </Link>
           </Nav>
 
           <Nav>
-            <Link className="nav-link" to="/account">
+            <Link className="nav-link text-color fw-semibold" to="/account">
               <RiUserStarLine size={25} />
             </Link>
-            <Link className="nav-link" to="/shopping">
+            <Link className="nav-link text-color fw-semibold" to="/shopping">
               <PiShoppingCartSimpleBold size={25} />
             </Link>
           </Nav>
