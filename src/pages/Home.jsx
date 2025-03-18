@@ -5,9 +5,9 @@ import Carousel from '../components/HomeCarousel'
 const Home = () => {
   return (
     <>
-      <Container fluid className="py-5">
-        <Row className="justify-content-center mt-3">
-          <Col xs={12} md={8} lg={12}>
+      <Container fluid>
+        <Row className="justify-content-center">
+          <Col xs={12}>
             <div className="d-flex justify-content-center">
               <Carousel />
             </div>

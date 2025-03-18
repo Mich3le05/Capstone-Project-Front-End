@@ -2,7 +2,7 @@ import { Container, Nav, Navbar } from 'react-bootstrap'
 import { PiShoppingCartSimpleBold } from 'react-icons/pi'
 import { RiUserStarLine } from 'react-icons/ri'
 import { Link, useLocation } from 'react-router-dom'
-import logo from '../assets/images/logo-bg.png'
+import logo from '../assets/images/logo-bg-1.png'
 
 const MyNav = () => {
   const location = useLocation()
@@ -12,9 +12,9 @@ const MyNav = () => {
         <Navbar.Brand
           as={Link}
           to="/"
-          className="d-flex align-items-center py-0"
+          className="d-flex align-items-center py-1"
         >
-          <img src={logo} alt="logo" width="160" height="" className="" />
+          <img src={logo} alt="logo" width="160" className="" />
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
