@@ -6,7 +6,10 @@ import { Link } from 'react-router-dom'
 
 const MyFooter = () => {
   return (
-    <Container fluid className="footer-color font text-color p-5 pb-2 my-2">
+    <Container
+      fluid
+      className="footer-color font text-color p-5 pb-2 mb-2 shadow-footer"
+    >
       <Row>
         <Col md={3} className="d-flex flex-column ms-3">
           <Link className="nav-link fw-semibold" to="/">
