@@ -19,7 +19,7 @@ function App() {
       <header>
         <MyNav />
       </header>
-      <main className="bg-color">
+      <main className="bg-color body">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products/:productId" element={<Products />} />

@@ -7,7 +7,11 @@ import logo from '../assets/images/logo-bg-1.png'
 const MyNav = () => {
   const location = useLocation()
   return (
-    <Navbar collapseOnSelect expand="lg" className="nav-color py-0 shadow-nav">
+    <Navbar
+      collapseOnSelect
+      expand="lg"
+      className="nav-color py-0 shadow-nav fixed-top z-3"
+    >
       <Container className="d-flex justify-content-between align-items-center">
         <Navbar.Brand
           as={Link}

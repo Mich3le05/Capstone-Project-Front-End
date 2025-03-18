@@ -43,3 +43,7 @@
   text-decoration-color: #000;
   transform: scale(1.1);
 }
+
+.body {
+  padding-top: 75px;
+}
