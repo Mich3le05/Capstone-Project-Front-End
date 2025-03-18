@@ -5,7 +5,7 @@ import img2 from '../assets/images/2.webp'
 const HomeCarousel = () => {
   return (
     <>
-      <Carousel>
+      <Carousel className="titoli-font ">
         <Carousel.Item>
           <img src={img1} alt="biscotti duri" className="img-fluid" />
           <Carousel.Caption>
