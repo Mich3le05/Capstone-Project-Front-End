@@ -29,7 +29,7 @@ function App() {
           <Route
             path="*"
             element={
-              <Row className="justify-content-center mt-3">
+              <Row className="justify-content-center">
                 <Col xs={12} md={8} lg={6}>
                   <NotFound />
                 </Col>

@@ -1,10 +1,11 @@
 import { Container, Nav, Navbar } from 'react-bootstrap'
 import { PiShoppingCartSimpleBold } from 'react-icons/pi'
 import { RiUserStarLine } from 'react-icons/ri'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import logo from '../assets/images/logo-bg.png'
 
 const MyNav = () => {
+  const location = useLocation()
   return (
     <Navbar collapseOnSelect expand="lg" className="nav-color py-0 shadow-nav">
       <Container className="d-flex justify-content-between align-items-center">
@@ -23,16 +24,28 @@ const MyNav = () => {
           className="justify-content-center"
         >
           <Nav className="mx-auto">
-            <Link className="nav-link text-color fw-semibold fs-5" to="/">
+            <Link
+              className={`nav-link text-color fw-semibold fs-5 ${
+                location.pathname === '/' ? 'active' : ''
+              }`}
+              to="/"
+            >
               Home
             </Link>
             <Link
-              className="nav-link text-color fw-semibold fs-5"
+              className={`nav-link text-color fw-semibold fs-5 ${
+                location.pathname === '/products' ? 'active' : ''
+              }`}
               to="/products"
             >
               Prodotti
             </Link>
-            <Link className="nav-link text-color fw-semibold fs-5" to="/about">
+            <Link
+              className={`nav-link text-color fw-semibold fs-5 ${
+                location.pathname === '/about' ? 'active' : ''
+              }`}
+              to="/about"
+            >
               Contatti
             </Link>
           </Nav>
