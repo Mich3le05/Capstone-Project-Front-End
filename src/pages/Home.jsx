@@ -69,8 +69,6 @@ const Home = () => {
                   <img src={Pacchi} alt="pacchi" className="img-fluid" />
                 </div>
                 <p className=" fs-4 mt-5">
-                  {' '}
-                  <span className=" fw-semibold">SERVIZIO</span> e
                   <span className=" fw-semibold"> DISTRIBUZIONE</span> a livello
                   internazionale
                 </p>
