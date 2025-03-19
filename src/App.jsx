@@ -22,7 +22,7 @@ function App() {
       <main className="bg-color body">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/products/:productId" element={<Products />} />
+          <Route path="/products" element={<Products />} />
           <Route path="/about" element={<About />} />
           <Route path="/account" element={<Account />} />
           <Route path="/shopping" element={<Shopping />} />
