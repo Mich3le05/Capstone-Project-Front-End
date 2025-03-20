@@ -1,14 +1,24 @@
-import { Card, Button } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import Biscotti from '../assets/images/2.webp'
+import '../assets/css/Products.css'
 
 const Product = () => {
   return (
-    <Card className="border-0" style={{ width: '15rem', height: '20rem' }}>
-      <Card.Img variant="top" src={Biscotti} className=" object-fit-cover" />
-      <Card.Body className="p-2 text-center">
-        <Card.Title className="fs-3">Biscotti Castriciani</Card.Title>
-      </Card.Body>
-    </Card>
+    <Link to="/product/1" className="text-decoration-none">
+      <Card className="bg-transparent border-0 product-card">
+        <Card.Body className="d-flex flex-column align-items-center justify-content-between p-3">
+          <Card.Title className="text-center text-dark fs-4">
+            Biscotti Castriciani
+          </Card.Title>
+          <img
+            src={Biscotti}
+            alt="Biscotti Castriciani"
+            className="rounded-5 w-100 mb-1"
+          />
+        </Card.Body>
+      </Card>
+    </Link>
   )
 }
 
