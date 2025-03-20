@@ -12,6 +12,7 @@ import Products from './pages/Products'
 import NotFound from './components/NotFound'
 import MyNav from './components/MyNav'
 import MyFooter from './components/MyFooter'
+import ProductDetail from './components/ProductDetail'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/account" element={<Account />} />
           <Route path="/shopping" element={<Shopping />} />
+          <Route path="/productdetail" element={<ProductDetail />} />
           <Route
             path="*"
             element={

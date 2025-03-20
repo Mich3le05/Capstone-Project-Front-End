@@ -5,7 +5,7 @@ import '../assets/css/Products.css'
 
 const Product = () => {
   return (
-    <Link to="/product/1" className="text-decoration-none">
+    <Link to="/productdetail" className="text-decoration-none">
       <Card className="bg-transparent border-0 product-card">
         <Card.Body className="d-flex flex-column align-items-center justify-content-between p-3">
           <Card.Title className="text-center text-dark fs-4">
