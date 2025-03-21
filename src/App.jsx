@@ -13,6 +13,8 @@ import NotFound from './components/NotFound'
 import MyNav from './components/MyNav'
 import MyFooter from './components/MyFooter'
 import ProductDetail from './components/ProductDetail'
+import Login from './components/Login'
+import ProtectedRoute from './components/ProtectedRoute' // Importa ProtectedRoute
 
 function App() {
   return (
@@ -23,11 +25,33 @@ function App() {
       <main className="bg-color body">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
           <Route path="/about" element={<About />} />
           <Route path="/account" element={<Account />} />
           <Route path="/shopping" element={<Shopping />} />
-          <Route path="/productdetail" element={<ProductDetail />} />
+
+          {/* Proteggi la route dei prodotti */}
+          <Route
+            path="/products"
+            element={
+              <ProtectedRoute>
+                <Products />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Proteggi la route del dettaglio prodotto */}
+          <Route
+            path="/productdetail"
+            element={
+              <ProtectedRoute>
+                <ProductDetail />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route path="/login" element={<Login />} />
+
+          {/* Route per il 404 */}
           <Route
             path="*"
             element={
