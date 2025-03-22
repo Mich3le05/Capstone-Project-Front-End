@@ -1,41 +1,68 @@
-import { Col, Row, Button } from 'react-bootstrap'
-import { FaShoppingCart } from 'react-icons/fa'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Card, Button } from 'react-bootstrap'
+import { getAuthHeader } from '../utils/auth'
 import '../assets/css/Products.css'
+import Loading from './Loading'
+import Error from './Error'
 
 const ProductDetail = () => {
+  const [product, setProduct] = useState(null)
+  const [errorMessage, setErrorMessage] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    setIsLoading(true)
+    fetch('http://localhost:8080/api/products/1', {
+      method: 'GET',
+      headers: getAuthHeader(),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+        setProduct(data)
+        setIsLoading(false)
+      })
+      .catch((error) => {
+        console.error('Errore nel recupero prodotto:', error)
+        setErrorMessage('Impossibile recuperare il prodotto.')
+        setIsLoading(false)
+      })
+  }, [])
+
+  if (isLoading) {
+    return <Loading />
+  }
+
+  if (errorMessage) {
+    return <Error message={errorMessage} />
+  }
+
+  if (!product) {
+    return <p>Prodotto non trovato</p>
+  }
+
   return (
-    <div className="mb-4 mb-lg-0 mt-3">
-      <Row>
-        <Col sm={12}>
-          <h1>Biscotto</h1>
-        </Col>
-      </Row>
-      <Row className="mt-3">
-        <Col sm={4}>
-          <div className="mt-3">
-            <img className="book-cover" alt="book selected" />
-          </div>
-        </Col>
-        <Col sm={8}>
-          <p>
-            <span className="fw-bold">Description:</span>&nbsp;
-          </p>
-          <p>
-            <span className="fw-bold">Price:</span>&nbsp;
-          </p>
-          <Button className="d-flex align-items-center">
-            <span className="me-2">AGGIUNGI AL</span>
-            <FaShoppingCart />
+    <div className="d-flex justify-content-center py-5">
+      <Card className="product-detail-card p-3">
+        <Card.Img
+          variant="top"
+          src={product.image}
+          alt={product.title}
+          className="rounded-4"
+        />
+        <Card.Body>
+          <Card.Title className="text-center fs-3 mb-3">
+            {product.title}
+          </Card.Title>
+          <Card.Text className="mb-3">{product.description}</Card.Text>
+          <h5 className="text-primary mb-3">Prezzo: € {product.price}</h5>
+          <Button variant="dark" onClick={() => navigate(-1)}>
+            Torna indietro
           </Button>
-          <p>Fai il login per aggiungere il libro al carrello</p>
-        </Col>
-      </Row>
-      <div />
-      <Row>
-        <Col sm={12}>
-          <h3>Clicca su un libro per i dettagli</h3>
-        </Col>
-      </Row>
+        </Card.Body>
+      </Card>
     </div>
   )
 }
