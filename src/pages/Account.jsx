@@ -5,7 +5,7 @@ const Account = () => {
   return (
     <Container>
       <Row className="justify-content-center mt-3">
-        <Col xs={12} md={8} lg={6}>
+        <Col xs={12} md={8} lg={6} className="p-5">
           <h1>Acconut</h1>
           <LogoutButton />
         </Col>
