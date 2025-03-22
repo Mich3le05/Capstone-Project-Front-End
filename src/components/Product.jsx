@@ -19,6 +19,7 @@ const Product = () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data)
         setProduct(data)
         setIsLoading(false)
       })
@@ -49,7 +50,7 @@ const Product = () => {
             {product.title}
           </Card.Title>
           <img
-            src={product.imageUrl} // L'immagine arriverà dal backend
+            src={product.image}
             alt={product.title}
             className="rounded-5 w-100 mb-1"
           />

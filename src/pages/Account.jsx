@@ -1,4 +1,5 @@
 import { Col, Container, Row } from 'react-bootstrap'
+import LogoutButton from '../components/LogoutButton'
 
 const Account = () => {
   return (
@@ -6,6 +7,7 @@ const Account = () => {
       <Row className="justify-content-center mt-3">
         <Col xs={12} md={8} lg={6}>
           <h1>Acconut</h1>
+          <LogoutButton />
         </Col>
       </Row>
     </Container>
