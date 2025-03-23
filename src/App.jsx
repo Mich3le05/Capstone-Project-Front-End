@@ -14,7 +14,7 @@ import MyNav from './components/MyNav'
 import MyFooter from './components/MyFooter'
 import ProductDetail from './components/ProductDetail'
 import Login from './components/Login'
-import ProtectedRoute from './components/ProtectedRoute' // Importa ProtectedRoute
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
   return (
@@ -29,7 +29,6 @@ function App() {
           <Route path="/account" element={<Account />} />
           <Route path="/shopping" element={<Shopping />} />
 
-          {/* Proteggi la route dei prodotti */}
           <Route
             path="/products"
             element={
@@ -39,7 +38,6 @@ function App() {
             }
           />
 
-          {/* Proteggi la route del dettaglio prodotto */}
           <Route
             path="/productdetail"
             element={
@@ -51,7 +49,6 @@ function App() {
 
           <Route path="/login" element={<Login />} />
 
-          {/* Route per il 404 */}
           <Route
             path="*"
             element={
