@@ -14,8 +14,10 @@ const HomeCarousel = () => {
             style={{ filter: 'blur(1px)' }}
           />
           <div className="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-25"></div>
-          <Carousel.Caption className="text-start position-absolute top-0 start-0 p-5 ms-5 mt-3">
-            <h1 className="text-white">Biscotti tipici Castrensi</h1>
+          <Carousel.Caption className="text-start position-absolute top-0 start-0 p-5 ms-md-5 mt-md-3">
+            <h1 className="text-white display-4 display-md-3 display-lg-2">
+              Biscotti tipici Castrensi
+            </h1>
           </Carousel.Caption>
         </div>
       </Carousel.Item>
@@ -29,8 +31,10 @@ const HomeCarousel = () => {
             style={{ filter: 'blur(1px)' }}
           />
           <div className="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-25"></div>
-          <Carousel.Caption className="text-start position-absolute top-0 start-0 p-5 ms-5 mt-3">
-            <h1 className="text-white">Biscotti tipici Castrensi</h1>
+          <Carousel.Caption className="text-start position-absolute top-0 start-0 p-5 ms-md-5 mt-md-3">
+            <h1 className="text-white display-4 display-md-3 display-lg-2">
+              Biscotti tipici Castrensi
+            </h1>
           </Carousel.Caption>
         </div>
       </Carousel.Item>
