@@ -35,3 +35,18 @@
 .book-cover {
   max-width: 100%;
 }
+
+.category-link {
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.category-link:hover p {
+  transform: scale(1.1);
+  color: #d9534f;
+}
+
+.category-link p {
+  cursor: pointer;
+}

@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import { getAuthHeader } from '../utils/auth'
 import Loading from '../components/Loading'
 import Error from '../components/Error'
+import { Link } from 'react-router-dom'
 
 const Products = () => {
   const [categories, setCategories] = useState([])
@@ -57,9 +58,13 @@ const Products = () => {
             </h1>
             <div className="d-flex flex-row justify-content-around text-color center font ps-2 pt-4">
               {categories.map((category, index) => (
-                <p key={index} className="ps-3">
-                  {category.name}
-                </p>
+                <Link
+                  key={index}
+                  to={`/category/${category.id}`}
+                  className="category-link"
+                >
+                  <p className="ps-3">{category.name}</p>
+                </Link>
               ))}
               <p className="ps-3">Visualizza tutti</p>
             </div>
