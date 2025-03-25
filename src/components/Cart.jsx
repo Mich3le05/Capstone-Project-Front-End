@@ -23,6 +23,10 @@ const Cart = () => {
       .toFixed(2)
   }
 
+  const goToProductDetails = (productId) => {
+    navigate(`/product/${productId}`)
+  }
+
   return (
     <div className="py-5 text-color font">
       <Row className="justify-content-center">
@@ -72,32 +76,39 @@ const Cart = () => {
                         key={i}
                         className="cart-item d-flex align-items-center p-3 border-bottom"
                       >
-                        <img
-                          src={product.image}
-                          alt={product.title}
-                          className=" rounded-3 me-4"
-                          style={{
-                            width: '90px',
-                            height: '90px',
-                            objectFit: 'contain',
-                          }}
-                        />
-                        <div className="flex-grow-1">
-                          <h5 className="mb-1">{product.title}</h5>
-                          <div className="d-flex justify-content-between align-items-center">
+                        <div
+                          className="d-flex align-items-center"
+                          style={{ cursor: 'pointer', flexGrow: 1 }}
+                          onClick={() => goToProductDetails(product.id)}
+                        >
+                          <img
+                            src={product.image}
+                            alt={product.title}
+                            className="rounded-3 me-4"
+                            style={{
+                              width: '90px',
+                              height: '90px',
+                              objectFit: 'contain',
+                            }}
+                          />
+                          <div className="flex-grow-1">
+                            <h5 className="mb-1">{product.title}</h5>
                             <span className="text-muted">
                               € {product.price}
                             </span>
-                            <Button
-                              variant="outline-danger"
-                              size="sm"
-                              onClick={() => handleRemove(i)}
-                              className="border-0"
-                            >
-                              Rimuovi
-                            </Button>
                           </div>
                         </div>
+                        <Button
+                          variant="outline-danger"
+                          size="sm"
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            handleRemove(i)
+                          }}
+                          className="border-0"
+                        >
+                          Rimuovi
+                        </Button>
                       </div>
                     ))}
                   </Card.Body>
@@ -113,7 +124,7 @@ const Cart = () => {
                     top: '20px',
                   }}
                 >
-                  <Card.Body className="p-4 d-flex flex-column ">
+                  <Card.Body className="p-4 d-flex flex-column">
                     <div className="mb-4">
                       <h4 className="mb-3">Riepilogo ordine</h4>
                       <div className="d-flex justify-content-between mb-2">
@@ -135,7 +146,7 @@ const Cart = () => {
                         variant="warning"
                         size="lg"
                         onClick={() => navigate('/checkout')}
-                        className="mt-auto w-75 py-2 rounded-pill d-flex align-items-center justify-content-center gap-2 "
+                        className="mt-auto w-75 py-2 rounded-pill d-flex align-items-center justify-content-center gap-2"
                       >
                         <FaCreditCard /> Procedi al pagamento
                       </Button>
