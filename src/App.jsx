@@ -7,7 +7,6 @@ import { Col, Row } from 'react-bootstrap'
 import Home from './pages/Home'
 import About from './pages/About'
 import Account from './pages/Account'
-import Shopping from './pages/Shopping'
 import Products from './pages/Products'
 import NotFound from './components/NotFound'
 import MyNav from './components/MyNav'
@@ -16,6 +15,7 @@ import ProductDetail from './components/ProductDetail'
 import Login from './components/Login'
 import CreateProduct from './components/CreateProduct'
 import ProtectedRoute from './components/ProtectedRoute'
+import Cart from './components/Cart'
 
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/account" element={<Account />} />
-          <Route path="/shopping" element={<Shopping />} />
+          <Route path="/shopping" element={<Cart />} />
           <Route path="/products" element={<Products />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/login" element={<Login />} />

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { Card, Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { addToCartAction } from '../redux/reducers/cartActions'
 import '../assets/css/Products.css'
@@ -53,28 +53,47 @@ const ProductDetail = () => {
   }
 
   return (
-    <div className="d-flex justify-content-center py-5">
-      <Card className="product-detail-card p-3">
-        <Card.Img
-          variant="top"
-          src={product.image}
-          alt={product.title}
-          className="rounded-4"
-        />
-        <Card.Body>
-          <Card.Title className="text-center fs-3 mb-3">
-            {product.title}
-          </Card.Title>
-          <Card.Text className="mb-3">{product.description}</Card.Text>
-          <h5 className="text-primary mb-3">Prezzo: € {product.price}</h5>
-          <Button variant="dark" onClick={addToCart}>
-            Aggiungi al carrello
-          </Button>
-          <Button variant="dark" onClick={() => navigate(-1)} className="ms-3">
-            Torna indietro
-          </Button>
-        </Card.Body>
-      </Card>
+    <div className="container py-5 text-color font">
+      <div className="row g-4 align-items-center">
+        <div className="col-md-6">
+          <div className="d-flex justify-content-center">
+            <img
+              src={product.image}
+              alt={product.title}
+              className="img-fluid rounded-4 shadow-sm"
+              style={{ maxHeight: '500px', objectFit: 'contain' }}
+            />
+          </div>
+        </div>
+
+        <div className="col-md-6">
+          <div className="ps-md-4">
+            <h1 className="mb-3 fw-bold">{product.title}</h1>
+            <p className="text-muted mb-4 fs-5">{product.description}</p>
+            <h3 className="mb-4">€ {product.price}</h3>
+
+            <div
+              className="d-flex flex-column gap-3"
+              style={{ maxWidth: '250px' }}
+            >
+              <Button
+                variant="outline-warning"
+                onClick={addToCart}
+                className="rounded-5 fw-semibold fs-5 border border-2 border-warning"
+              >
+                Aggiungi al carrello
+              </Button>
+              <Button
+                variant="outline-warning"
+                onClick={() => navigate(-1)}
+                className="rounded-5 text-color w-75 fw-semibold fs-5 border border-2 border-warning"
+              >
+                Torna indietro
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
