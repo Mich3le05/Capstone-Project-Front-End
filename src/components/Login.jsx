@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Form, Button, Alert } from 'react-bootstrap'
+import { jwtDecode } from 'jwt-decode'
 import Loading from './Loading'
 import Error from './Error'
 
@@ -11,33 +12,37 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault()
-    setIsLoading(true) // Attiviamo il loading
+    setIsLoading(true)
 
-    fetch('http://localhost:8080/api/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username, password }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.token) {
-          localStorage.setItem('token', data.token) // Salviamo il token
-          alert('Login riuscito!')
-          navigate('/products') // Reindirizziamo alla pagina dei prodotti
-        } else {
-          setErrorMessage('Login fallito, controlla le credenziali')
-        }
-        setIsLoading(false) // Disattiviamo il loading
+    try {
+      const response = await fetch('http://localhost:8080/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
       })
-      .catch((err) => {
-        console.error('Errore login:', err)
-        setErrorMessage('Si è verificato un errore, riprova più tardi.')
-        setIsLoading(false)
-      })
+
+      if (!response.ok) throw new Error('Credenziali non valide')
+
+      const data = await response.json()
+      localStorage.setItem('token', data.token)
+
+      const decodedToken = jwtDecode(data.token)
+      console.log('Token decodificato:', decodedToken)
+
+      if (decodedToken.roles?.includes('ADMIN')) {
+        alert('Login riuscito come Admin!')
+        navigate('/admin')
+      } else {
+        alert('Login riuscito!')
+        navigate('/account')
+      }
+    } catch (error) {
+      setErrorMessage(error.message)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (

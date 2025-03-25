@@ -17,7 +17,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     setIsLoading(true)
-    fetch(`http://localhost:8080/api/products/${id}`) // Rimossa l'autenticazione
+    fetch(`http://localhost:8080/api/products/${id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Prodotto non trovato')

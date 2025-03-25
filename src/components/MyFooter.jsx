@@ -44,13 +44,13 @@ const MyFooter = () => {
           <Link className="nav-link mb-1" to="/">
             Home
           </Link>
-          <Link className="nav-link mb-1" to="/">
+          <Link className="nav-link mb-1" to="/products">
             Prodotti
           </Link>
-          <Link className="nav-link mb-1" to="/">
+          <Link className="nav-link mb-1" to="/about">
             Contatti
           </Link>
-          <Link className="nav-link mb-1" to="/">
+          <Link className="nav-link mb-1" to="/products">
             Compra
           </Link>
         </Col>
@@ -86,7 +86,7 @@ const MyFooter = () => {
           className="d-flex justify-content-center justify-content-md-end mt-4"
         >
           <p className="text-muted m-0 me-3">
-            &copy;{new Date().getFullYear()} Biscottificio Castroreale S.r.l
+            &copy;{new Date().getFullYear()} Michele Mandanici
           </p>
         </Col>
       </Row>

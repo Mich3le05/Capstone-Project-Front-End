@@ -7,16 +7,13 @@ const LogoutButton = () => {
   const navigate = useNavigate()
 
   const handleLogout = () => {
-    // Rimuovi il token da localStorage
     localStorage.removeItem('token')
 
-    // Mostra il toast di successo
     setShowToast(true)
 
-    // Reindirizza al login dopo 2 secondi
     setTimeout(() => {
       navigate('/login')
-    }, 2000) // Attendi 2 secondi prima del redirect
+    }, 2000)
   }
 
   return (
@@ -25,7 +22,6 @@ const LogoutButton = () => {
         Logout
       </Button>
 
-      {/* Toast per mostrare il messaggio di successo */}
       <ToastContainer position="top-end" className="p-3">
         <Toast
           show={showToast}

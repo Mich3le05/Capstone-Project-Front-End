@@ -14,6 +14,8 @@ import MyNav from './components/MyNav'
 import MyFooter from './components/MyFooter'
 import ProductDetail from './components/ProductDetail'
 import Login from './components/Login'
+import CreateProduct from './components/CreateProduct'
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
   return (
@@ -30,6 +32,16 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/login" element={<Login />} />
+
+          <Route
+            path="/admin/create-product"
+            element={
+              <ProtectedRoute adminOnly={true}>
+                <CreateProduct />
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path="*"
             element={
