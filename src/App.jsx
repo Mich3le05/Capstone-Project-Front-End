@@ -12,7 +12,6 @@ import NotFound from './components/NotFound'
 import MyNav from './components/MyNav'
 import MyFooter from './components/MyFooter'
 import ProductDetail from './components/ProductDetail'
-import Login from './components/Login'
 import CreateProduct from './components/CreateProduct'
 import ProtectedRoute from './components/ProtectedRoute'
 import Cart from './components/Cart'
@@ -31,7 +30,6 @@ function App() {
           <Route path="/shopping" element={<Cart />} />
           <Route path="/products" element={<Products />} />
           <Route path="/product/:id" element={<ProductDetail />} />
-          <Route path="/login" element={<Login />} />
 
           <Route
             path="/admin/create-product"

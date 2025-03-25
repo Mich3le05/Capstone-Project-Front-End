@@ -5,17 +5,29 @@ import {
   Button,
   Toast,
   ToastContainer,
+  Form,
+  Alert,
 } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { jwtDecode } from 'jwt-decode'
+import Loading from '../components/Loading'
+import Error from '../components/Error'
 
 const Account = () => {
   const [userInfo, setUserInfo] = useState(null)
   const [showToast, setShowToast] = useState(false)
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
+    checkAuth()
+  }, [])
+
+  const checkAuth = () => {
     const token = localStorage.getItem('token')
     if (token) {
       try {
@@ -26,40 +38,99 @@ const Account = () => {
         console.error('Errore nel decodificare il token:', error)
       }
     }
-  }, [])
+  }
+
+  const handleLogin = async (e) => {
+    e.preventDefault()
+    setIsLoading(true)
+
+    try {
+      const response = await fetch('http://localhost:8080/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      })
+
+      if (!response.ok) throw new Error('Credenziali non valide')
+
+      const data = await response.json()
+      localStorage.setItem('token', data.token)
+      checkAuth()
+    } catch (error) {
+      setErrorMessage(error.message)
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   const handleLogout = () => {
     localStorage.removeItem('token')
+    setUserInfo(null)
     setShowToast(true)
     setTimeout(() => {
-      navigate('/login')
+      navigate('/account')
     }, 2000)
   }
 
   return (
-    <Container className="font text-color">
-      <Row className="justify-content-center mt-3">
-        <Col xs={12} className="p-5 text-center">
-          {userInfo && (
+    <Container
+      fluid
+      className="d-flex justify-content-center font text-colo p-5"
+    >
+      <Row className="mt-3">
+        <Col xs={12}>
+          {userInfo ? (
             <>
               <h1 className="mb-4">
                 {userInfo.roles?.includes('ROLE_ADMIN')
                   ? 'Bentornato Admin!'
                   : 'Il tuo account'}
               </h1>
-              {userInfo.roles?.includes('ROLE_ADMIN') && (
-                <Link
-                  to="/admin/create-product"
-                  className="btn btn-primary me-5"
-                >
-                  Crea Prodotto
-                </Link>
-              )}
+              <div className="d-flex justify-content-around">
+                {userInfo.roles?.includes('ROLE_ADMIN') && (
+                  <Link
+                    to="/admin/create-product"
+                    className="btn btn-primary me-5"
+                  >
+                    Crea Prodotto
+                  </Link>
+                )}
+                <Button variant="danger" onClick={handleLogout}>
+                  Logout
+                </Button>
+              </div>
+            </>
+          ) : (
+            <>
+              <h2>Login</h2>
+              {isLoading && <Loading />}
+              {errorMessage && <Error message={errorMessage} />}
+              <Form onSubmit={handleLogin} className="mt-4">
+                <Form.Group controlId="formBasicUsername" className="mb-3">
+                  <Form.Label>Username</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Inserisci username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                </Form.Group>
+
+                <Form.Group controlId="formBasicPassword" className="mb-3">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder="Inserisci password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </Form.Group>
+                <Button variant="warning" type="submit" className="mt-3">
+                  Login
+                </Button>
+              </Form>
             </>
           )}
-          <Button variant="danger" onClick={handleLogout}>
-            Logout
-          </Button>
 
           <ToastContainer position="top-end" className="p-3">
             <Toast
