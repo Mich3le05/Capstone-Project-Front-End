@@ -132,7 +132,7 @@ const Products = () => {
               </p>
             </div>
 
-            <hr className="border-2 border-black w-100 mb-5 mt-1" />
+            <hr className="border-2 border-black w-100 mt-1 mb-3" />
             <Row ref={productsRef}>
               {filteredProducts.length > 0 ? (
                 filteredProducts.map((product) => (
