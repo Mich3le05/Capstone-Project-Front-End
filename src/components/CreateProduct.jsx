@@ -21,18 +21,9 @@ const CreateProduct = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const token = localStorage.getItem('token')
-        if (!token) {
-          setErrorMessage('Token non trovato. Effettua il login.')
-          return
-        }
-
         const response = await fetch('http://localhost:8080/api/categories', {
           method: 'GET',
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-            'Content-Type': 'application/json',
-          },
+          headers: getAuthHeader(),
         })
 
         if (!response.ok) {
@@ -42,9 +33,7 @@ const CreateProduct = () => {
               localStorage.removeItem('token')
               setTimeout(() => window.location.reload(), 1500)
             } else {
-              setErrorMessage(
-                'Errore di autenticazione. Contatta l’amministratore.'
-              )
+              setErrorMessage('Errore nel caricamento delle categorie.')
             }
             return
           }
