@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Card, Button } from 'react-bootstrap'
-import { getAuthHeader } from '../utils/auth'
 import { useDispatch } from 'react-redux'
 import { addToCartAction } from '../redux/reducers/cartActions'
 import '../assets/css/Products.css'
@@ -18,18 +17,20 @@ const ProductDetail = () => {
 
   useEffect(() => {
     setIsLoading(true)
-    fetch(`http://localhost:8080/api/products/${id}`, {
-      method: 'GET',
-      headers: getAuthHeader(),
-    })
-      .then((response) => response.json())
+    fetch(`http://localhost:8080/api/products/${id}`) // Rimossa l'autenticazione
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Prodotto non trovato')
+        }
+        return response.json()
+      })
       .then((data) => {
         setProduct(data)
         setIsLoading(false)
       })
       .catch((error) => {
         console.error('Errore nel recupero prodotto:', error)
-        setErrorMessage('Impossibile recuperare il prodotto.')
+        setErrorMessage(error.message || 'Impossibile recuperare il prodotto.')
         setIsLoading(false)
       })
   }, [id])

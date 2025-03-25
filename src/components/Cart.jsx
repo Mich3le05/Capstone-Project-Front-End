@@ -40,7 +40,7 @@ const Cart = () => {
         )}
 
         {cartArray.length === 0 ? (
-          <Alert variant="info">
+          <Alert variant="warning">
             Il tuo carrello è vuoto.{' '}
             <Alert.Link onClick={() => navigate('/')}>
               Continua lo shopping
