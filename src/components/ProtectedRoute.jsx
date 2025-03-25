@@ -1,5 +1,6 @@
 import { jwtDecode } from 'jwt-decode'
 import { Navigate } from 'react-router-dom'
+import { isTokenValid } from '../utils/auth'
 
 const ProtectedRoute = ({ children, adminOnly = false }) => {
   const token = localStorage.getItem('token')
@@ -12,8 +13,7 @@ const ProtectedRoute = ({ children, adminOnly = false }) => {
   try {
     const decoded = jwtDecode(token)
 
-    // Controllo scadenza più dettagliato
-    if (Date.now() >= decoded.exp * 1000) {
+    if (!isTokenValid()) {
       console.log('Token scaduto, reindirizzamento al login')
       localStorage.removeItem('token')
       return <Navigate to="/login" replace />

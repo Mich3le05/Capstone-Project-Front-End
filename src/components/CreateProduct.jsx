@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Form, Button, Alert, Row, Col } from 'react-bootstrap'
-import { getAuthHeader } from '../utils/auth'
+import { Form, Button, Alert, Row, Col, Container } from 'react-bootstrap'
+import { getAuthHeader, isTokenValid } from '../utils/auth'
 import Loading from './Loading'
 import Error from './Error'
 
@@ -37,11 +37,18 @@ const CreateProduct = () => {
 
         if (!response.ok) {
           if (response.status === 401) {
-            setErrorMessage('Sessione scaduta. Effettua nuovamente il login.')
-            localStorage.removeItem('token')
-            setTimeout(() => window.location.reload(), 1500)
+            if (!isTokenValid()) {
+              setErrorMessage('Sessione scaduta. Effettua nuovamente il login.')
+              localStorage.removeItem('token')
+              setTimeout(() => window.location.reload(), 1500)
+            } else {
+              setErrorMessage(
+                'Errore di autenticazione. Contatta l’amministratore.'
+              )
+            }
             return
           }
+
           throw new Error(`Errore: ${response.status} ${response.statusText}`)
         }
 
@@ -100,11 +107,18 @@ const CreateProduct = () => {
       if (!response.ok) {
         const errorData = await response.json()
         if (response.status === 401) {
-          setErrorMessage('Sessione scaduta. Effettua nuovamente il login.')
-          localStorage.removeItem('token') // Rimuovi il token
-          setTimeout(() => window.location.reload(), 1500)
+          if (!isTokenValid()) {
+            setErrorMessage('Sessione scaduta. Effettua nuovamente il login.')
+            localStorage.removeItem('token')
+            setTimeout(() => window.location.reload(), 1500)
+          } else {
+            setErrorMessage(
+              'Errore di autenticazione. Contatta l’amministratore.'
+            )
+          }
           return
         }
+
         throw new Error(
           errorData.message || 'Errore nella creazione del prodotto'
         )
@@ -135,7 +149,7 @@ const CreateProduct = () => {
   }
 
   return (
-    <div className="p-4">
+    <Container className="p-5 text-color font">
       <h2>Crea Nuovo Prodotto</h2>
       {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
       {successMessage && <Alert variant="success">{successMessage}</Alert>}
@@ -225,7 +239,7 @@ const CreateProduct = () => {
           {isLoading ? 'Creazione in corso...' : 'Crea Prodotto'}
         </Button>
       </Form>
-    </div>
+    </Container>
   )
 }
 

@@ -37,7 +37,7 @@ const Account = () => {
   }
 
   return (
-    <Container>
+    <Container className="font text-color">
       <Row className="justify-content-center mt-3">
         <Col xs={12} className="p-5 text-center">
           {userInfo && (

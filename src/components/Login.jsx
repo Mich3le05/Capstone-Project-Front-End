@@ -33,7 +33,7 @@ const Login = () => {
 
       if (decodedToken.roles?.includes('ROLE_ADMIN')) {
         alert('Login riuscito come Admin!')
-        navigate('/admin')
+        navigate('/account')
       } else {
         alert('Login riuscito!')
         navigate('/account')
