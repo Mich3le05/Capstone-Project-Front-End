@@ -235,7 +235,7 @@ const CreateProduct = () => {
           </Form.Select>
         </Form.Group>
 
-        <Button variant="primary" type="submit" disabled={isLoading}>
+        <Button variant="warning" type="submit" disabled={isLoading}>
           {isLoading ? 'Creazione in corso...' : 'Crea Prodotto'}
         </Button>
       </Form>
