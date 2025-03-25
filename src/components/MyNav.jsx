@@ -1,21 +1,23 @@
 import { useState } from 'react'
-import { Container, Nav, Navbar } from 'react-bootstrap'
+import { Container, Nav, Navbar, Badge } from 'react-bootstrap'
 import { PiShoppingCartSimpleBold } from 'react-icons/pi'
 import { RiUserStarLine } from 'react-icons/ri'
 import { Link, useLocation } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import logo from '../assets/images/logo-bg-1.png'
 
 const MyNav = () => {
   const location = useLocation()
   const [expanded, setExpanded] = useState(false)
-
+  const cartItems = useSelector((state) => state.cart.content)
+  const cartItemsCount = cartItems.length
   return (
     <Navbar
       collapseOnSelect
       expand="lg"
       className="nav-color py-0 shadow-nav fixed-top z-3"
-      expanded={expanded} // Controlla lo stato del menu
-      onToggle={(isExpanded) => setExpanded(isExpanded)} // Aggiorna lo stato quando il menu viene aperto/chiuso
+      expanded={expanded}
+      onToggle={(isExpanded) => setExpanded(isExpanded)}
       onSelect={() => setExpanded(false)}
     >
       <Container className="d-flex justify-content-between align-items-center">
@@ -73,11 +75,26 @@ const MyNav = () => {
               <RiUserStarLine size={25} />
             </Link>
             <Link
-              className="nav-link text-color fw-semibold"
+              className="nav-link text-color fw-semibold position-relative"
               to="/shopping"
               onClick={() => setExpanded(false)}
             >
               <PiShoppingCartSimpleBold size={25} />
+              {cartItemsCount > 0 && (
+                <Badge
+                  pill
+                  bg="danger"
+                  className="position-absolute translate-middle"
+                  style={{
+                    fontSize: '0.65rem',
+                    padding: '4px 6px',
+                    top: '23%',
+                    left: '78%',
+                  }}
+                >
+                  {cartItemsCount}
+                </Badge>
+              )}
             </Link>
           </Nav>
         </Navbar.Collapse>
