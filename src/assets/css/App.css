@@ -47,3 +47,13 @@
 .body {
   padding-top: 75px;
 }
+
+/* Cart-------------------------------------- */
+
+.cart-item:hover {
+  background-color: #f8f9fa;
+}
+
+.rounded-pill {
+  border-radius: 50rem !important;
+}
