@@ -11,24 +11,25 @@ const ProtectedRoute = ({ children, adminOnly = false }) => {
 
   try {
     const decoded = jwtDecode(token)
+
+    // Controllo scadenza più dettagliato
     if (Date.now() >= decoded.exp * 1000) {
       console.log('Token scaduto, reindirizzamento al login')
       localStorage.removeItem('token')
       return <Navigate to="/login" replace />
     }
 
-    if (adminOnly) {
-      if (!decoded.roles?.includes('ROLE_ADMIN')) {
-        console.log('Accesso negato, reindirizzamento alla home')
-        return <Navigate to="/" replace />
-      }
+    if (adminOnly && !decoded.roles?.includes('ROLE_ADMIN')) {
+      console.log('Accesso negato, reindirizzamento alla home')
+      return <Navigate to="/" replace />
     }
+
+    return children
   } catch (error) {
     console.error('Errore nel decodificare il token:', error)
+    localStorage.removeItem('token')
     return <Navigate to="/login" replace />
   }
-
-  return children
 }
 
 export default ProtectedRoute

@@ -30,7 +30,7 @@ const CreateProduct = () => {
         const response = await fetch('http://localhost:8080/api/categories', {
           method: 'GET',
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'application/json',
           },
         })

@@ -23,3 +23,15 @@ export const getAuthHeader = () => {
   const token = localStorage.getItem('token')
   return token ? { Authorization: `Bearer ${token}` } : {}
 }
+
+export const isTokenValid = () => {
+  const token = getToken()
+  if (!token) return false
+
+  try {
+    const decoded = jwtDecode(token)
+    return Date.now() < decoded.exp * 1000
+  } catch {
+    return false
+  }
+}

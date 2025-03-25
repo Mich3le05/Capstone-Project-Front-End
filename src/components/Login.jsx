@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Form, Button, Alert } from 'react-bootstrap'
+import { Form, Button, Alert, Container, Row } from 'react-bootstrap'
 import { jwtDecode } from 'jwt-decode'
 import Loading from './Loading'
 import Error from './Error'
@@ -31,7 +31,7 @@ const Login = () => {
       const decodedToken = jwtDecode(data.token)
       console.log('Token decodificato:', decodedToken)
 
-      if (decodedToken.roles?.includes('ADMIN')) {
+      if (decodedToken.roles?.includes('ROLE_ADMIN')) {
         alert('Login riuscito come Admin!')
         navigate('/admin')
       } else {
@@ -46,36 +46,37 @@ const Login = () => {
   }
 
   return (
-    <div>
-      <h2>Login</h2>
-      {isLoading && <Loading />}
-      {errorMessage && <Error message={errorMessage} />}
-      <Form onSubmit={handleLogin}>
-        <Form.Group controlId="formBasicUsername">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Inserisci username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </Form.Group>
+    <Container className="py-5 w-50">
+      <Row className="justify-content-center mt-3">
+        <h2>Login</h2>
+        {isLoading && <Loading />}
+        {errorMessage && <Error message={errorMessage} />}
+        <Form onSubmit={handleLogin}>
+          <Form.Group controlId="formBasicUsername">
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Inserisci username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </Form.Group>
 
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Inserisci password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
-
-        <Button variant="primary" type="submit">
-          Login
-        </Button>
-      </Form>
-    </div>
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Inserisci password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
+          <Button variant="warning" type="submit" className="mt-3">
+            Login
+          </Button>
+        </Form>
+      </Row>
+    </Container>
   )
 }
 
