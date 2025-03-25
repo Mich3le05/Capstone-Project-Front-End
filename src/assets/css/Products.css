@@ -15,6 +15,26 @@
   );
 }
 
+.category-link {
+  text-decoration: none;
+  transition: transform 0.3s ease, text-decoration-color 0.3s ease;
+  cursor: pointer;
+}
+
+.category-link.active,
+.category-link:hover {
+  text-decoration: underline;
+  text-decoration-color: #452518;
+  transform: scale(1.1);
+}
+
+.selected-category {
+  text-decoration: underline;
+  text-decoration-color: #452518;
+  transform: scale(1.1);
+  font-weight: bolder;
+}
+
 /* card --------------------------- */
 .product-card {
   width: 18rem;
@@ -34,19 +54,4 @@
 
 .book-cover {
   max-width: 100%;
-}
-
-.category-link {
-  text-decoration: none;
-  color: inherit;
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.category-link:hover p {
-  transform: scale(1.1);
-  color: #d9534f;
-}
-
-.category-link p {
-  cursor: pointer;
 }

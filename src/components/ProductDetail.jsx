@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Card, Button } from 'react-bootstrap'
 import { getAuthHeader } from '../utils/auth'
 import '../assets/css/Products.css'
@@ -7,6 +7,7 @@ import Loading from './Loading'
 import Error from './Error'
 
 const ProductDetail = () => {
+  const { id } = useParams()
   const [product, setProduct] = useState(null)
   const [errorMessage, setErrorMessage] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -14,13 +15,12 @@ const ProductDetail = () => {
 
   useEffect(() => {
     setIsLoading(true)
-    fetch('http://localhost:8080/api/products/1', {
+    fetch(`http://localhost:8080/api/products/${id}`, {
       method: 'GET',
       headers: getAuthHeader(),
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
         setProduct(data)
         setIsLoading(false)
       })
@@ -29,7 +29,7 @@ const ProductDetail = () => {
         setErrorMessage('Impossibile recuperare il prodotto.')
         setIsLoading(false)
       })
-  }, [])
+  }, [id])
 
   if (isLoading) {
     return <Loading />

@@ -2,11 +2,10 @@ import { Col, Container, Row } from 'react-bootstrap'
 import Product from '../components/Product'
 import Lavorazione from '../assets/images/Lavorazione.webp'
 import '../assets/css/Products.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { getAuthHeader } from '../utils/auth'
 import Loading from '../components/Loading'
 import Error from '../components/Error'
-import { Link } from 'react-router-dom'
 
 const Products = () => {
   const [categories, setCategories] = useState([])
@@ -14,6 +13,8 @@ const Products = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState(null)
   const [errorMessage, setErrorMessage] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+
+  const productsRef = useRef(null)
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -61,7 +62,7 @@ const Products = () => {
       const data = await response.json()
       console.log('Prodotti ricevuti:', data)
 
-      setFilteredProducts(data) // Aggiorna i prodotti filtrati
+      setFilteredProducts(data)
       setIsLoading(false)
     } catch (error) {
       console.error('Errore nel fetch dei prodotti:', error)
@@ -71,12 +72,21 @@ const Products = () => {
   }
 
   useEffect(() => {
-    fetchProducts() // Carica tutti i prodotti all'inizio
+    fetchProducts()
   }, [])
 
   const handleCategoryClick = (categoryId) => {
     setSelectedCategoryId(categoryId)
     fetchProducts(categoryId)
+    if (productsRef.current) {
+      productsRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+      setTimeout(() => {
+        window.scrollBy(0, -200)
+      }, 500) //delay
+    }
   }
 
   if (isLoading) {
@@ -96,27 +106,34 @@ const Products = () => {
             <h1 className="text-center text-danger mb-4 titoli-font">
               I nostri prodotti
             </h1>
-            <div className="d-flex flex-row justify-content-around text-color center font ps-2 pt-4">
+
+            <div className="d-flex flex-row justify-content-around text-color center font ps-2 pt-4 fs-5">
               {categories.map((category) => (
                 <p
                   key={category.id}
-                  className="category-link ps-3"
-                  onClick={() => fetchProducts(category.id)} // 🔹 Ora chiamiamo il fetch con l'ID della categoria
-                  style={{ cursor: 'pointer' }}
+                  className={`category-link ps-3 ${
+                    selectedCategoryId === category.id
+                      ? 'selected-category'
+                      : ''
+                  }`}
+                  onClick={() => handleCategoryClick(category.id)}
                 >
                   {category.name}
                 </p>
               ))}
               <p
-                className="ps-3 category-link"
-                onClick={() => fetchProducts(null)}
+                className={`ps-3 category-link ${
+                  selectedCategoryId === null ? 'selected-category' : ''
+                }`} //
+                onClick={() => handleCategoryClick(null)}
+                i
               >
                 Visualizza tutti
               </p>
             </div>
 
-            <hr className="border-2 border-black w-100 mb-5" />
-            <Row>
+            <hr className="border-2 border-black w-100 mb-5 mt-1" />
+            <Row ref={productsRef}>
               {filteredProducts.length > 0 ? (
                 filteredProducts.map((product) => (
                   <Col key={product.id} xs={12} md={4} lg={3}>
