@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom'
 
 const Products = () => {
   const [categories, setCategories] = useState([])
+  const [filteredProducts, setFilteredProducts] = useState([])
+  const [selectedCategoryId, setSelectedCategoryId] = useState(null)
   const [errorMessage, setErrorMessage] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
@@ -39,6 +41,44 @@ const Products = () => {
     fetchCategories()
   }, [])
 
+  const fetchProducts = async (categoryId = null) => {
+    setIsLoading(true)
+    try {
+      let url = 'http://localhost:8080/api/products'
+      if (categoryId !== null) {
+        url = `http://localhost:8080/api/products/category/${categoryId}`
+      }
+
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: getAuthHeader(),
+      })
+
+      if (!response.ok) {
+        throw new Error('Errore nella richiesta dei prodotti')
+      }
+
+      const data = await response.json()
+      console.log('Prodotti ricevuti:', data)
+
+      setFilteredProducts(data) // Aggiorna i prodotti filtrati
+      setIsLoading(false)
+    } catch (error) {
+      console.error('Errore nel fetch dei prodotti:', error)
+      setErrorMessage('Impossibile recuperare i prodotti.')
+      setIsLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchProducts() // Carica tutti i prodotti all'inizio
+  }, [])
+
+  const handleCategoryClick = (categoryId) => {
+    setSelectedCategoryId(categoryId)
+    fetchProducts(categoryId)
+  }
+
   if (isLoading) {
     return <Loading />
   }
@@ -57,19 +97,36 @@ const Products = () => {
               I nostri prodotti
             </h1>
             <div className="d-flex flex-row justify-content-around text-color center font ps-2 pt-4">
-              {categories.map((category, index) => (
-                <Link
-                  key={index}
-                  to={`/category/${category.id}`}
-                  className="category-link"
+              {categories.map((category) => (
+                <p
+                  key={category.id}
+                  className="category-link ps-3"
+                  onClick={() => fetchProducts(category.id)} // 🔹 Ora chiamiamo il fetch con l'ID della categoria
+                  style={{ cursor: 'pointer' }}
                 >
-                  <p className="ps-3">{category.name}</p>
-                </Link>
+                  {category.name}
+                </p>
               ))}
-              <p className="ps-3">Visualizza tutti</p>
+              <p
+                className="ps-3 category-link"
+                onClick={() => fetchProducts(null)}
+              >
+                Visualizza tutti
+              </p>
             </div>
+
             <hr className="border-2 border-black w-100 mb-5" />
-            <Product />
+            <Row>
+              {filteredProducts.length > 0 ? (
+                filteredProducts.map((product) => (
+                  <Col key={product.id} xs={12} md={4} lg={3}>
+                    <Product product={product} />
+                  </Col>
+                ))
+              ) : (
+                <p className="text-center">Nessun prodotto disponibile.</p>
+              )}
+            </Row>
           </Col>
         </Row>
       </Container>
