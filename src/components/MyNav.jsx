@@ -27,7 +27,7 @@ const MyNav = () => {
           className="d-flex align-items-center py-1"
           onClick={() => setExpanded(false)}
         >
-          <img src={logo} alt="logo" width="160" className="" />
+          <img src={logo} alt="logo" className="logo" />
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

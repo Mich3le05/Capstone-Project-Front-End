@@ -57,3 +57,21 @@
 .rounded-pill {
   border-radius: 50rem !important;
 }
+
+/* Logo nav----------------------------- */
+
+.logo {
+  width: 160px;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    width: 120px;
+  }
+}

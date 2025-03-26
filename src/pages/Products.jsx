@@ -107,7 +107,7 @@ const Products = () => {
               I nostri prodotti
             </h1>
 
-            <div className="d-flex flex-row justify-content-around text-color center font ps-2 pt-4 fs-5">
+            <div className="flex-xs-column d-sm-flex flex-row justify-content-around text-color center font ps-2 pt-4 fs-5 ">
               {categories.map((category) => (
                 <p
                   key={category.id}
@@ -136,7 +136,14 @@ const Products = () => {
             <Row ref={productsRef}>
               {filteredProducts.length > 0 ? (
                 filteredProducts.map((product) => (
-                  <Col key={product.id} xs={12} md={4} lg={3}>
+                  <Col
+                    key={product.id}
+                    xs={12}
+                    md={6}
+                    lg={4}
+                    xl={3}
+                    className=" d-flex justify-content-center d-md-block"
+                  >
                     <Product product={product} />
                   </Col>
                 ))
