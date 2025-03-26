@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react'
 import { jwtDecode } from 'jwt-decode'
 import Loading from '../components/Loading'
 import Error from '../components/Error'
+import DeleteProducts from '../components/DeleteProducts'
 
 const Account = () => {
   const [userInfo, setUserInfo] = useState(null)
@@ -75,13 +76,13 @@ const Account = () => {
   return (
     <Container
       fluid
-      className="d-flex justify-content-center font text-colo p-5"
+      className="d-flex justify-content-center font text-color p-5"
     >
       <Row className="mt-3">
         <Col xs={12}>
           {userInfo ? (
             <>
-              <h1 className="mb-4">
+              <h1 className="mb-4 titoli-font text-center">
                 {userInfo.roles?.includes('ROLE_ADMIN')
                   ? 'Bentornato Admin!'
                   : 'Il tuo account'}
@@ -95,7 +96,18 @@ const Account = () => {
                     Crea Prodotto
                   </Link>
                 )}
-                <Button variant="danger" onClick={handleLogout}>
+                <div>
+                  {userInfo.roles?.includes('ROLE_ADMIN') && (
+                    <Link to="/delete-products" className="btn btn-danger">
+                      Elimina Prodotti
+                    </Link>
+                  )}
+                </div>
+                <Button
+                  variant="danger"
+                  onClick={handleLogout}
+                  className="ms-5"
+                >
                   Logout
                 </Button>
               </div>
