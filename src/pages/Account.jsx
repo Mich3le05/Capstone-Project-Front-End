@@ -13,7 +13,6 @@ import { useEffect, useState } from 'react'
 import { jwtDecode } from 'jwt-decode'
 import Loading from '../components/Loading'
 import Error from '../components/Error'
-import DeleteProducts from '../components/DeleteProducts'
 
 const Account = () => {
   const [userInfo, setUserInfo] = useState(null)
@@ -98,7 +97,7 @@ const Account = () => {
                 )}
                 <div>
                   {userInfo.roles?.includes('ROLE_ADMIN') && (
-                    <Link to="/delete-products" className="btn btn-danger">
+                    <Link to="/products" className="btn btn-danger">
                       Elimina Prodotti
                     </Link>
                   )}

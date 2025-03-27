@@ -15,7 +15,7 @@ import ProductDetail from './components/ProductDetail'
 import CreateProduct from './components/CreateProduct'
 import ProtectedRoute from './components/ProtectedRoute'
 import Cart from './components/Cart'
-import DeleteProducts from './components/DeleteProducts'
+import DeleteProduct from './components/DeleteProduct'
 
 function App() {
   return (
@@ -31,21 +31,22 @@ function App() {
           <Route path="/shopping" element={<Cart />} />
           <Route path="/products" element={<Products />} />
           <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+
+          <Route
+            path="/delete-product/:id"
+            element={
+              <ProtectedRoute>
+                <DeleteProduct />
+              </ProtectedRoute>
+            }
+          />
 
           <Route
             path="/admin/create-product"
             element={
               <ProtectedRoute adminOnly={true}>
                 <CreateProduct />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route
-            path="/delete-products"
-            element={
-              <ProtectedRoute adminOnly={true}>
-                <DeleteProducts />
               </ProtectedRoute>
             }
           />
