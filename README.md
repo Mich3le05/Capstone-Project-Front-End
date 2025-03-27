@@ -1,4 +1,5 @@
 Biscottificio – Capstone Project Epicode
+
 Benvenuto nel progetto Biscottificio, un'applicazione web sviluppata come Capstone Project per Epicode.
 
 🔗 Back-End Repository: [GitHub - Capstone Project Back-End](https://github.com/Mich3le05/Capstone-Project-Back-End)
