@@ -15,7 +15,7 @@ import ProductDetail from './components/ProductDetail'
 import CreateProduct from './components/CreateProduct'
 import ProtectedRoute from './components/ProtectedRoute'
 import Cart from './components/Cart'
-import DeleteProduct from './components/DeleteProduct'
+import EditProduct from './components/EditProduct'
 
 function App() {
   return (
@@ -34,10 +34,10 @@ function App() {
           <Route path="/product/:id" element={<ProductDetail />} />
 
           <Route
-            path="/delete-product/:id"
+            path="/edit-product/:id"
             element={
               <ProtectedRoute>
-                <DeleteProduct />
+                <EditProduct />
               </ProtectedRoute>
             }
           />

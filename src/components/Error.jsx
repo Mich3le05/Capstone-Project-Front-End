@@ -1,5 +1,9 @@
 import { Alert } from 'react-bootstrap'
 
-const Error = ({ message }) => <Alert variant="danger">{message}</Alert>
+const Error = ({ message }) => (
+  <Alert variant="danger" className="m-5">
+    {message}
+  </Alert>
+)
 
 export default Error

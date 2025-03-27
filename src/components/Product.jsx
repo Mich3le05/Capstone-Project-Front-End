@@ -18,7 +18,7 @@ const Product = ({ product }) => {
 
   return (
     <Link
-      to={isAdmin ? `/delete-product/${product.id}` : `/product/${product.id}`}
+      to={isAdmin ? `/edit-product/${product.id}` : `/product/${product.id}`}
       className="text-decoration-none"
     >
       <Card className="bg-transparent border-0 product-card my-3">

@@ -1,7 +1,7 @@
 import { Spinner } from 'react-bootstrap'
 
 const Loading = () => (
-  <div style={{ textAlign: 'center', marginTop: '20px' }}>
+  <div className="m-5 text-center">
     <Spinner animation="border" role="status" />
     <span>Caricamento in corso...</span>
   </div>

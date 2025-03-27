@@ -98,7 +98,7 @@ const Account = () => {
                 <div>
                   {userInfo.roles?.includes('ROLE_ADMIN') && (
                     <Link to="/products" className="btn btn-danger">
-                      Elimina Prodotti
+                      Modifica Prodotti
                     </Link>
                   )}
                 </div>
