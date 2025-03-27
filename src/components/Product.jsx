@@ -29,7 +29,7 @@ const Product = ({ product }) => {
           <img
             src={product.image}
             alt={product.title}
-            className="rounded-3 w-100 mb-1"
+            className="product-image mb-1"
           />
         </Card.Body>
       </Card>
