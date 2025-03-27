@@ -1,7 +1,7 @@
 import { Alert } from 'react-bootstrap'
 
 const Error = ({ message }) => (
-  <Alert variant="danger" className="m-5">
+  <Alert variant="danger" className=" p-5">
     {message}
   </Alert>
 )
