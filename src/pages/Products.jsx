@@ -124,9 +124,8 @@ const Products = () => {
               <p
                 className={`ps-3 category-link ${
                   selectedCategoryId === null ? 'selected-category' : ''
-                }`} //
+                }`}
                 onClick={() => handleCategoryClick(null)}
-                i
               >
                 Visualizza tutti
               </p>
