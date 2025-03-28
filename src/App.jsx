@@ -16,6 +16,8 @@ import CreateProduct from './components/CreateProduct'
 import ProtectedRoute from './components/ProtectedRoute'
 import Cart from './components/Cart'
 import EditProduct from './components/EditProduct'
+import Checkout from './pages/Checkout'
+import PaymentSuccess from './components/PaymentSuccess'
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/payment-success" element={<PaymentSuccess />} />
 
           <Route
             path="/edit-product/:id"
