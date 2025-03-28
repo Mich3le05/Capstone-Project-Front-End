@@ -145,7 +145,11 @@ const Cart = () => {
                       <Button
                         variant="warning"
                         size="lg"
-                        onClick={() => navigate('/checkout')}
+                        onClick={() =>
+                          navigate('/checkout', {
+                            state: { total: calculateTotal() },
+                          })
+                        }
                         className="mt-auto w-75 py-2 rounded-pill d-flex align-items-center justify-content-center gap-2"
                       >
                         <FaCreditCard /> Procedi al pagamento

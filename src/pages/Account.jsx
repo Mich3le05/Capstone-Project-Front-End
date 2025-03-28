@@ -124,6 +124,7 @@ const Account = () => {
                     placeholder="Inserisci username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
+                    className=" me-5"
                   />
                 </Form.Group>
 
@@ -134,6 +135,7 @@ const Account = () => {
                     placeholder="Inserisci password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    className=" me-5"
                   />
                 </Form.Group>
                 <Button variant="warning" type="submit" className="mt-3">
