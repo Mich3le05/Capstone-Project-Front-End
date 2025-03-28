@@ -4,7 +4,7 @@ import { PiShoppingCartSimpleBold } from 'react-icons/pi'
 import { RiUserStarLine } from 'react-icons/ri'
 import { Link, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import logo from '../assets/images/logo-bg-1.png'
+import logo from '../assets/images/Logo-bg-1.png'
 
 const MyNav = () => {
   const location = useLocation()
