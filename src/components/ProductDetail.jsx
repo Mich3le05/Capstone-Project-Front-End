@@ -49,7 +49,8 @@ const ProductDetail = () => {
 
   const addToCart = () => {
     dispatch(addToCartAction(product))
-    alert(`${product.title} aggiunto al carrello!`)
+    // alert(`${product.title} aggiunto al carrello!`)
+    console.log('Prodotto aggiunto al carrello:', product)
   }
 
   return (

@@ -10,6 +10,7 @@ const Cart = () => {
   const [showAlert, setShowAlert] = useState(false)
   const cartArray = useSelector((state) => state.cart.content)
   const dispatch = useDispatch()
+  console.log('Stato attuale del carrello:', cartArray)
 
   const handleRemove = (index) => {
     dispatch(removeFromCartAction(index))
