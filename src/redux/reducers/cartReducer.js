@@ -2,7 +2,7 @@
 import { ADD_TO_CART, REMOVE_FROM_CART } from '../actions/types'
 
 const initialState = {
-  content: [], // All'inizio il carrello è vuoto
+  content: [],
 }
 
 const cartReducer = (state = initialState, action) => {
@@ -17,6 +17,11 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         content: state.content.filter((product, i) => i !== action.payload),
+      }
+    case 'CLEAR_CART':
+      return {
+        ...state,
+        content: [],
       }
 
     default:

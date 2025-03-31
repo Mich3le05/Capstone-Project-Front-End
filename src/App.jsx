@@ -18,10 +18,13 @@ import Cart from './components/Cart'
 import EditProduct from './components/EditProduct'
 import Checkout from './pages/Checkout'
 import PaymentSuccess from './components/PaymentSuccess'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
   return (
     <BrowserRouter>
+      <ToastContainer />
       <header>
         <MyNav />
       </header>

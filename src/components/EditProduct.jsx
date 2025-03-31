@@ -4,6 +4,7 @@ import { Button, Form } from 'react-bootstrap'
 import '../assets/css/Products.css'
 import Loading from './Loading'
 import ErrorComponent from './Error'
+import { toast } from 'react-toastify'
 
 const EditProduct = () => {
   const { id } = useParams()
@@ -14,7 +15,7 @@ const EditProduct = () => {
   const [image, setImage] = useState('')
   const [categoryId, setCategoryId] = useState('')
   const [stock, setStock] = useState('')
-  const [categories, setCategories] = useState([]) // For categories
+  const [categories, setCategories] = useState([])
   const [errorMessage, setErrorMessage] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
@@ -23,7 +24,6 @@ const EditProduct = () => {
   useEffect(() => {
     setIsLoading(true)
 
-    // Fetch product details
     fetch(`http://localhost:8080/api/products/${id}`)
       .then((response) => {
         if (!response.ok) {
@@ -33,12 +33,13 @@ const EditProduct = () => {
       })
       .then((data) => {
         setProduct(data)
-        setTitle(data.title)
-        setDescription(data.description)
-        setPrice(data.price)
-        setImage(data.image)
-        setCategoryId(data.categoryId)
-        setStock(data.stock)
+        setTitle(data.title || '')
+        setDescription(data.description || '')
+        setPrice(data.price || '')
+        setImage(data.image || '')
+        setCategoryId(data.categoryId || '')
+        setStock(data.stock || '')
+
         setIsLoading(false)
       })
       .catch((error) => {
@@ -47,7 +48,6 @@ const EditProduct = () => {
         setIsLoading(false)
       })
 
-    // Fetch categories
     fetch('http://localhost:8080/api/categories/')
       .then((response) => {
         if (!response.ok) {
@@ -69,7 +69,7 @@ const EditProduct = () => {
 
     const token = localStorage.getItem('token')
     if (!token) {
-      alert('Devi essere autenticato per aggiornare il prodotto.')
+      toast.error('Devi essere autenticato per aggiornare il prodotto.')
       return
     }
 
@@ -94,12 +94,12 @@ const EditProduct = () => {
         if (!response.ok) {
           throw new Error("Errore nell'aggiornamento del prodotto")
         }
-        alert('Prodotto aggiornato con successo!')
+        toast.success('Prodotto aggiornato con successo!')
         navigate(`/products`)
       })
       .catch((error) => {
         console.error("Errore nell'aggiornamento del prodotto:", error)
-        setErrorMessage(error.message || 'Impossibile aggiornare il prodotto.')
+        toast.error(error.message || 'Impossibile aggiornare il prodotto.')
       })
   }
 
@@ -119,12 +119,12 @@ const EditProduct = () => {
         if (!response.ok) {
           throw new Error("Errore nell'eliminazione del prodotto")
         }
-        alert('Prodotto eliminato con successo!')
+        toast.success('Prodotto eliminato con successo!')
         navigate('/products')
       })
       .catch((error) => {
         console.error('Errore nella cancellazione del prodotto:', error)
-        setErrorMessage(error.message || 'Impossibile eliminare il prodotto.')
+        toast.error(error.message || 'Impossibile eliminare il prodotto.')
       })
       .finally(() => {
         setIsLoading(false)

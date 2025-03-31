@@ -7,7 +7,17 @@ import {
   useStripe,
   useElements,
 } from '@stripe/react-stripe-js'
-import { Button, Container, Row, Col, Card } from 'react-bootstrap'
+import {
+  Button,
+  Container,
+  Row,
+  Col,
+  Card,
+  Form,
+  Spinner,
+} from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
+import { clearCartAction } from '../redux/actions/types'
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY)
 
@@ -15,6 +25,8 @@ const CheckoutForm = ({ total }) => {
   const stripe = useStripe()
   const elements = useElements()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (event) => {
@@ -27,10 +39,14 @@ const CheckoutForm = ({ total }) => {
       }`,
       {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ amount: total * 100, email: email }),
       }
     )
 
-    const clientSecret = await response.text()
+    const { clientSecret } = await response.json()
 
     const result = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
@@ -41,6 +57,21 @@ const CheckoutForm = ({ total }) => {
     if (result.error) {
       alert(result.error.message)
     } else {
+      const paymentData = {
+        paymentId: result.paymentIntent.id,
+        email: email,
+      }
+
+      await fetch('http://localhost:8080/api/payments/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(paymentData),
+      })
+
+      dispatch(clearCartAction())
+
       navigate('/payment-success', {
         state: { paymentId: result.paymentIntent.id },
       })
@@ -51,14 +82,28 @@ const CheckoutForm = ({ total }) => {
 
   return (
     <form onSubmit={handleSubmit} className="p-3 font">
+      <Form.Group className="mb-3">
+        <Form.Label>Email</Form.Label>
+        <Form.Control
+          type="email"
+          placeholder="Inserisci la tua email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+      </Form.Group>
       <CardElement className="p-2 border rounded" />
       <Button
         type="submit"
         variant="success"
         className="mt-3 w-100"
-        disabled={!stripe || loading}
+        disabled={!stripe || loading || !email}
       >
-        Paga € {total}
+        {loading ? (
+          <Spinner animation="border" size="sm" />
+        ) : (
+          <>Paga € {total}</>
+        )}
       </Button>
     </form>
   )

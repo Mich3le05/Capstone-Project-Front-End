@@ -6,6 +6,7 @@ import { addToCartAction } from '../redux/reducers/cartActions'
 import '../assets/css/Products.css'
 import Loading from './Loading'
 import Error from './Error'
+import { toast } from 'react-toastify'
 
 const ProductDetail = () => {
   const { id } = useParams()
@@ -49,7 +50,7 @@ const ProductDetail = () => {
 
   const addToCart = () => {
     dispatch(addToCartAction(product))
-    // alert(`${product.title} aggiunto al carrello!`)
+    toast.success(`${product.title} aggiunto al carrello!`)
     console.log('Prodotto aggiunto al carrello:', product)
   }
 
