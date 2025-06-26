@@ -10,9 +10,9 @@ import Spiga from '../assets/images/spiga.png'
 
 const Home = () => {
   return (
-    <>
-      <Container fluid>
-        <div className="d-flex justify-content-center">
+    <div className="overflow-hidden">
+      <Container fluid className="px-0">
+        <div className="d-flex justify-content-center w-100">
           <Carousel />
         </div>
         <div className="d-flex justify-content-center mb-5">
@@ -85,7 +85,7 @@ const Home = () => {
           </div>
         </section>
       </Container>
-    </>
+    </div>
   )
 }
 
