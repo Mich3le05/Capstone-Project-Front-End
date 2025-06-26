@@ -48,9 +48,9 @@ const Products = () => {
   const fetchProducts = async (categoryId = null) => {
     setIsLoading(true)
     try {
-      let url = 'http://localhost:8080/api/products'
+      let url = 'https://fiscal-ianthe-mich3le-051d8cd5.koyeb.app/api/products'
       if (categoryId !== null) {
-        url = `http://localhost:8080/api/products/category/${categoryId}`
+        url = `https://fiscal-ianthe-mich3le-051d8cd5.koyeb.app/api/products/category/${categoryId}`
       }
 
       const response = await fetch(url, {

@@ -62,13 +62,16 @@ const CheckoutForm = ({ total }) => {
         email: email,
       }
 
-      await fetch('http://localhost:8080/api/payments/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(paymentData),
-      })
+      await fetch(
+        'https://fiscal-ianthe-mich3le-051d8cd5.koyeb.app/api/payments/send-email',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(paymentData),
+        }
+      )
 
       dispatch(clearCartAction())
 
