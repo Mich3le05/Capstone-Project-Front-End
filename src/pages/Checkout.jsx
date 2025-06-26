@@ -34,7 +34,7 @@ const CheckoutForm = ({ total }) => {
     setLoading(true)
 
     const response = await fetch(
-      `http://localhost:8080/api/payments/create-payment-intent?amount=${
+      `https://fiscal-ianthe-mich3le-051d8cd5.koyeb.app/api/payments/create-payment-intent?amount=${
         total * 100
       }`,
       {

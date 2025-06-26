@@ -22,10 +22,13 @@ const CreateProduct = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch('http://localhost:8080/api/categories/', {
-          method: 'GET',
-          headers: getAuthHeader(),
-        })
+        const response = await fetch(
+          'http://fiscal-ianthe-mich3le-051d8cd5.koyeb.app/api/categories/',
+          {
+            method: 'GET',
+            headers: getAuthHeader(),
+          }
+        )
 
         if (!response.ok) {
           if (response.status === 401 && !isTokenValid()) {

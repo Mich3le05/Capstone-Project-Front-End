@@ -18,7 +18,8 @@ const ProductDetail = () => {
 
   useEffect(() => {
     setIsLoading(true)
-    fetch(`http://localhost:8080/api/products/${id}`)
+    fetch(`https://fiscal-ianthe-mich3le-051d8cd5.koyeb.app
+/api/products/${id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Prodotto non trovato')

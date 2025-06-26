@@ -109,12 +109,15 @@ const EditProduct = () => {
     }
 
     setIsLoading(true)
-    fetch(`http://localhost:8080/api/products/${id}`, {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-      },
-    })
+    fetch(
+      `https://fiscal-ianthe-mich3le-051d8cd5.koyeb.app/api/products/${id}`,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      }
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Errore nell'eliminazione del prodotto")

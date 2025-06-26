@@ -45,11 +45,14 @@ const Account = () => {
     setIsLoading(true)
 
     try {
-      const response = await fetch('http://localhost:8080/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
-      })
+      const response = await fetch(
+        'http://fiscal-ianthe-mich3le-051d8cd5.koyeb.app/api/auth/login',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password }),
+        }
+      )
 
       if (!response.ok) throw new Error('Credenziali non valide')
 
