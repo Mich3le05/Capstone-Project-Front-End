@@ -34,11 +34,11 @@ const MyNav = () => {
 
         <Navbar.Collapse
           id="responsive-navbar-nav"
-          className="justify-content-center"
+          className="justify-content-center pb-2 pb-lg-0 "
         >
           <Nav className="mx-auto">
             <Link
-              className={`nav-link text-color fw-semibold fs-5 ${
+              className={`nav-link2 text-color fw-semibold fs-5 me-4 ${
                 location.pathname === '/' ? 'active' : ''
               }`}
               to="/"
@@ -47,7 +47,7 @@ const MyNav = () => {
               Home
             </Link>
             <Link
-              className={`nav-link text-color fw-semibold fs-5 ${
+              className={`nav-link2 text-color fw-semibold fs-5 me-4 ${
                 location.pathname === '/products' ? 'active' : ''
               }`}
               to="/products"
@@ -56,7 +56,7 @@ const MyNav = () => {
               Prodotti
             </Link>
             <Link
-              className={`nav-link text-color fw-semibold fs-5 ${
+              className={`nav-link2 text-color fw-semibold fs-5 ${
                 location.pathname === '/about' ? 'active' : ''
               }`}
               to="/about"
@@ -68,14 +68,14 @@ const MyNav = () => {
 
           <Nav>
             <Link
-              className="nav-link text-color fw-semibold"
+              className="nav-link2 text-color fw-semibold me-4"
               to="/account"
               onClick={() => setExpanded(false)}
             >
               <RiUserStarLine size={25} />
             </Link>
             <Link
-              className="nav-link text-color fw-semibold position-relative"
+              className="nav-link2 text-color fw-semibold position-relative"
               to="/shopping"
               onClick={() => setExpanded(false)}
             >

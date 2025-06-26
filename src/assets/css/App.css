@@ -44,8 +44,40 @@
   transform: scale(1.1);
 }
 
-.body {
-  padding-top: 75px;
+.nav-link2 {
+  text-decoration: none;
+  transition: transform 0.3s ease, text-decoration-color 0.3s ease;
+}
+
+.nav-link2.active,
+.nav-link2:hover {
+  text-decoration: underline;
+  text-decoration-color: #452518;
+  transform: scale(1.1);
+}
+
+@media (min-width: 232px) and (max-width: 990px) {
+  .nav-link2.active,
+  .nav-link2:hover {
+    transform: scale(1.02);
+  }
+}
+
+body {
+  padding-top: 58px;
+  overflow-x: hidden;
+}
+
+@media (min-width: 481px) {
+  body {
+    padding-top: 70px;
+  }
+}
+
+@media (min-width: 991px) {
+  body {
+    padding-top: 76px;
+  }
 }
 
 /* Cart-------------------------------------- */
