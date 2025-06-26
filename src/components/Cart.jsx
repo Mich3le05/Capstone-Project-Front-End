@@ -29,15 +29,17 @@ const Cart = () => {
   }
 
   return (
-    <div className="py-5 text-color font">
+    <div className="py-5 text-color font px-3">
       <Row className="justify-content-center">
         <Col lg={10}>
           <div className="d-flex justify-content-between align-items-center mb-4">
-            <h2 className="fw-bold mb-0 titoli-font">Il tuo carrello</h2>
+            <h2 className="fw-bold mb-0 titoli-font fs-4 fs-md-1">
+              Il tuo carrello
+            </h2>
             <Button
               variant="outline-secondary"
               onClick={() => navigate('/')}
-              className="d-flex align-items-center gap-2"
+              className="d-flex align-items-center gap-0 gap-md-2 px-1 px-md-3 "
             >
               <FaArrowLeft /> Continua lo shopping
             </Button>

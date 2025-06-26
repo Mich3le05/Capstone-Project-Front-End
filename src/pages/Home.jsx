@@ -11,7 +11,7 @@ import Spiga from '../assets/images/spiga.png'
 const Home = () => {
   return (
     <>
-      <Container fluid className="px-0">
+      <Container fluid>
         <div className="d-flex justify-content-center">
           <Carousel />
         </div>
