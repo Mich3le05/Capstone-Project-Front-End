@@ -24,7 +24,7 @@ const EditProduct = () => {
   useEffect(() => {
     setIsLoading(true)
 
-    fetch(`http://localhost:8080/api/products/${id}`)
+    fetch(`https://fiscal-ianthe-mich3le-051d8cd5.koyeb.app/api/products/${id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Prodotto non trovato')
@@ -48,7 +48,7 @@ const EditProduct = () => {
         setIsLoading(false)
       })
 
-    fetch('http://localhost:8080/api/categories/')
+    fetch('https://fiscal-ianthe-mich3le-051d8cd5.koyeb.app/api/categories/')
       .then((response) => {
         if (!response.ok) {
           throw new Error('Errore nel caricamento delle categorie')
@@ -82,14 +82,17 @@ const EditProduct = () => {
       stock,
     }
 
-    fetch(`http://localhost:8080/api/products/${id}`, {
-      method: 'PUT',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(updatedProduct),
-    })
+    fetch(
+      `https://fiscal-ianthe-mich3le-051d8cd5.koyeb.app/api/products/${id}`,
+      {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedProduct),
+      }
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Errore nell'aggiornamento del prodotto")

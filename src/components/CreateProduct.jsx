@@ -23,7 +23,7 @@ const CreateProduct = () => {
     const fetchCategories = async () => {
       try {
         const response = await fetch(
-          'http://fiscal-ianthe-mich3le-051d8cd5.koyeb.app/api/categories/',
+          'https://fiscal-ianthe-mich3le-051d8cd5.koyeb.app/api/categories/',
           {
             method: 'GET',
             headers: getAuthHeader(),
@@ -64,7 +64,7 @@ const CreateProduct = () => {
       setSuccessMessage('')
 
       const response = await fetch(
-        'http://localhost:8080/api/images/uploadme',
+        'https://fiscal-ianthe-mich3le-051d8cd5.koyeb.app/api/images/uploadme',
         {
           method: 'POST',
           body: uploadData,
@@ -134,15 +134,18 @@ const CreateProduct = () => {
 
       console.log('Invio dati:', productData)
 
-      const response = await fetch('http://localhost:8080/api/products', {
-        method: 'POST',
-        headers: {
-          accept: '*/*',
-          'Content-Type': 'application/json',
-          ...getAuthHeader(),
-        },
-        body: JSON.stringify(productData),
-      })
+      const response = await fetch(
+        'https://fiscal-ianthe-mich3le-051d8cd5.koyeb.app/api/products',
+        {
+          method: 'POST',
+          headers: {
+            accept: '*/*',
+            'Content-Type': 'application/json',
+            ...getAuthHeader(),
+          },
+          body: JSON.stringify(productData),
+        }
+      )
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}))
