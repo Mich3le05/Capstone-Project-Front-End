@@ -46,7 +46,7 @@ const Account = () => {
 
     try {
       const response = await fetch(
-        'http://fiscal-ianthe-mich3le-051d8cd5.koyeb.app/api/auth/login',
+        'https://fiscal-ianthe-mich3le-051d8cd5.koyeb.app/api/auth/login',
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
